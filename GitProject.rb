@@ -1,5 +1,4 @@
 require 'octokit'
-require 'active_support/core_ext/numeric/time'
 require 'date'
 require 'travis'
 
@@ -56,7 +55,6 @@ class GitProject
 
 	def cloneProject(nameFolder)
 		Dir.chdir @mainLocalClonePath
-		puts getProjectName
 		clone = %x(git clone https://github.com/#{getProjectName()} #{nameFolder})
 		Dir.chdir nameFolder
 		return Dir.pwd
@@ -136,7 +134,7 @@ class GitProject
 		parentTwo = nil
 		buildTwo = nil
 		
-		if (parentsMerge.size > 1)
+		if (parentsMerge != nil and parentsMerge.size > 1)
 			projectBuilds = loadAllBuildsProject()
 
 			if (projectBuilds[parentsMerge[0]] != nil and projectBuilds[parentsMerge[1]] != nil)

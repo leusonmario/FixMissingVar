@@ -42,7 +42,7 @@ if repLog == ""
 end
 
 projectName = repLog.split("//")[1]
-projectName = projectName[projectName.index("/") + 1 .. projectName.rindex(".") - 1]
+projectName = projectName.split("github.com/").last.gsub("\n","")
 commitHash = `#{"git rev-parse --verify HEAD"}`
 commitHash = commitHash.gsub("\n", "")
 
